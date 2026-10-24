@@ -53,8 +53,4 @@ Two palettes, each with a light and a dark theme (the theme button is in the hea
 ## Security
 See `docs/SECURITY_AUDIT.md`: an 18-item checklist (keys, env, admin routes, auth, access control, sanitising, XSS, rate limits, endpoints, CORS, headers, debug mode, dependencies, unused packages, exposed files, database, password hashing) with the evidence for each, the problems that were found and fixed, and the residual risks.
 
-## What was verified
-- 55 automated backend tests (27 functional + 28 platform/security) pass on real PostgreSQL 16; migrations 0001-0005 apply with no schema drift; the real SMTP path was tested against a local mail server.
-- A real Chromium browser run covered: website → sign up → onboarding, add patient, book, queue, call next, consultation with prescription, PDF, invoice and payment, dashboard and analytics, delete → history → restore → permanent delete, Ctrl+K palette, assistant panel, settings, logout/login, mobile layout (15 checks) plus a second browser suite for the new features (19 checks: admin, notifications, red dots and chimes, patient sign-up and requests, doctors, Back button, date/time pickers).
-- Backup and restore scripts were run against PostgreSQL.
 
