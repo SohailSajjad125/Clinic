@@ -1,0 +1,24 @@
+# secrets and local config: never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# runtime data
+storage/
+backups/
+pgdata/
+*.dump
+*.tgz
+
+.venv/
+venv/
+pycache/
+*.py[cod]
+
+# build output and caches
+node_modules/
+.next/
+__pycache__/
+*.pyc
+.pytest_cache/

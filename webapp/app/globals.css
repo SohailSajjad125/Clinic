@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ClinicOS web app palette: "Soft Platinum & Amber" (light) and "Charcoal Black & Amber Gold" (dark) */
+:root {
+  --bg:#EFEEE9; --surface:#FFFFFF; --border:rgba(0,0,0,.08); --text:#212121; --muted:#5A5A55;
+  --primary:#A67C00; --primary-hover:#8F6B00; --primary-fg:#14110A; --accent:#7A5C00; --accent-soft:rgba(166,124,0,.13); --glass:rgba(245,244,240,.85);
+  --success-rgb:46 125 50; --warning-rgb:237 108 2; --danger-rgb:211 47 47; --success-ink:#1B5E20; --warning-ink:#A04A00; --danger-ink:#B71C1C; --danger-fg:#FFFFFF;
+}
+[data-theme="dark"] {
+  --bg:#0D0D0D; --surface:#171717; --border:rgba(229,193,88,.18); --text:#E5E5E5; --muted:#A3A3A3;
+  --primary:#E5C158; --primary-hover:#F0D27A; --primary-fg:#141108; --accent:#E5C158; --accent-soft:rgba(229,193,88,.14); --glass:rgba(23,23,23,.80);
+  --success-rgb:74 222 128; --warning-rgb:251 191 36; --danger-rgb:248 113 113; --success-ink:#4ADE80; --warning-ink:#FBBF24; --danger-ink:#F87171; --danger-fg:#1A0505;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: "Inter Variable", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.glass { background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.hero-glow { background: radial-gradient(60% 50% at 78% 18%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 70%), radial-gradient(40% 40% at 8% 92%, color-mix(in srgb, var(--primary) 12%, transparent), transparent 70%), var(--bg); }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-btn px-5 py-3 text-sm font-semibold transition-colors duration-200 disabled:opacity-60; }
+  .btn-primary { background: var(--primary); color: var(--primary-fg); }
+  .btn-primary:hover { background: var(--primary-hover); }
+  .btn-outline { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+  .btn-outline:hover { border-color: var(--accent); }
+  .field { @apply w-full rounded-btn border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-mute; }
+  .field:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .prose-c p { @apply mb-5 leading-8 text-mute; }
+  .prose-c h2 { @apply mb-3 mt-10 font-display text-2xl font-bold text-ink; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+/* ---- app additions ---- */
+.card { @apply rounded-card border border-line bg-surface; }
+.th { @apply px-4 py-3 text-left text-xs font-semibold text-mute; }
+.td { @apply px-4 py-3 text-sm; }
+.btn-sm { @apply px-3 py-2 text-xs; }
+.btn-danger { background: rgb(var(--danger-rgb)); color: var(--danger-fg); } .btn-danger:hover { filter: brightness(.92); }
+.skeleton { background: linear-gradient(90deg, var(--border), transparent, var(--border)); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 10px; }
+@keyframes sk { to { background-position: -200% 0; } }
+.print-only { display: none; }
+@media print {
+  body * { visibility: hidden; }
+  .print-only, .print-only * { visibility: visible; color: #000; }
+  .print-only { display: block; position: absolute; left: 0; top: 0; width: 100%; padding: 32px; }
+}
+
+/* ---- dates and times: readable and easy to hit in both themes ---- */
+html { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+input[type="date"], input[type="time"], input[type="datetime-local"] { min-height: 44px; color: var(--text); background: var(--surface); font-variant-numeric: tabular-nums; }
+input[type="date"]::-webkit-datetime-edit, input[type="time"]::-webkit-datetime-edit { color: var(--text); }
+input::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 1; padding: 6px; border-radius: 8px; }
+input::-webkit-calendar-picker-indicator:hover { background: color-mix(in srgb, var(--primary) 22%, transparent); }
+.chip { @apply rounded-full border border-line bg-surface px-3.5 py-2 text-sm font-medium text-ink transition-colors; }
+.chip:hover:not(:disabled) { border-color: var(--primary); }
+.chip[aria-pressed="true"] { background: var(--btn-bg); color: var(--btn-fg); border-color: var(--btn-bg); }
+.chip:disabled { opacity: .4; text-decoration: line-through; cursor: not-allowed; }
+.red-dot { @apply absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-danger ring-2 ring-surface; animation: pulse-dot 1.8s ease-out infinite; }
+@keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgb(var(--danger-rgb) / .55); } 70% { box-shadow: 0 0 0 7px rgb(var(--danger-rgb) / 0); } 100% { box-shadow: 0 0 0 0 rgb(var(--danger-rgb) / 0); } }

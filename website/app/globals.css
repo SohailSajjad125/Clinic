@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ClinicOS website palette: "Warm Alabaster & Burnished Gold" (light) and "Matte Graphite & Luminous Gold" (dark) */
+:root {
+  --bg:#F8F7F4; --surface:rgba(255,255,255,.72); --border:rgba(184,134,11,.20); --text:#1C1B18; --muted:#5F5B50;
+  --primary:#B8860B; --primary-hover:#A07409; --primary-fg:#1A1408; --accent:#8C6239; --accent-soft:rgba(184,134,11,.12); --glass:rgba(248,247,244,.78);
+  --success-rgb:46 125 50; --warning-rgb:237 108 2; --danger-rgb:211 47 47; --success-ink:#1B5E20; --warning-ink:#A04A00; --danger-ink:#B71C1C; --danger-fg:#FFFFFF;
+}
+[data-theme="dark"] {
+  --bg:#121212; --surface:rgba(26,26,26,.68); --border:rgba(212,175,55,.25); --text:#F5F4F0; --muted:#B4AFA2;
+  --primary:#D4AF37; --primary-hover:#E2C25A; --primary-fg:#141108; --accent:#D4AF37; --accent-soft:rgba(212,175,55,.14); --glass:rgba(18,18,18,.74);
+  --success-rgb:74 222 128; --warning-rgb:251 191 36; --danger-rgb:248 113 113; --success-ink:#4ADE80; --warning-ink:#FBBF24; --danger-ink:#F87171; --danger-fg:#1A0505;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: "Inter Variable", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.glass { background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.hero-glow { background: radial-gradient(60% 50% at 78% 18%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 70%), radial-gradient(40% 40% at 8% 92%, color-mix(in srgb, var(--primary) 12%, transparent), transparent 70%), var(--bg); }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-btn px-5 py-3 text-sm font-semibold transition-colors duration-200 disabled:opacity-60; }
+  .btn-primary { background: var(--primary); color: var(--primary-fg); }
+  .btn-primary:hover { background: var(--primary-hover); }
+  .btn-outline { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+  .btn-outline:hover { border-color: var(--accent); }
+  .field { @apply w-full rounded-btn border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-mute; }
+  .field:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .prose-c p { @apply mb-5 leading-8 text-mute; }
+  .prose-c h2 { @apply mb-3 mt-10 font-display text-2xl font-bold text-ink; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+.card, .glass { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }

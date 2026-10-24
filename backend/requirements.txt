@@ -1,0 +1,16 @@
+# Runtime dependencies, pinned to the versions the test suite and security scan ran against.
+fastapi==0.142.2
+starlette==1.7.0
+uvicorn==0.54.0
+websockets==17.1
+SQLAlchemy==2.1.1
+alembic==1.20.0
+psycopg[binary]==3.3.6
+pydantic==2.13.5
+email-validator==2.3.0
+PyJWT==2.15.1
+bcrypt==5.0.0
+httpx==0.28.1
+reportlab==4.4.10
+python-multipart==0.0.32
+cryptography==50.0.2

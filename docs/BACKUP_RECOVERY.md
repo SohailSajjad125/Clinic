@@ -1,0 +1,2 @@
+# Backup and recovery
+Run `scripts/backup.sh` daily from cron (needs `pg_dump`). It writes a custom-format dump and a tarball of uploaded files, and prunes copies older than `KEEP_DAYS` (14). Copy the folder off the server (object storage, another machine). **Test a restore regularly:** create an empty database, set `DATABASE_URL`, run `scripts/restore.sh db-....dump files-....tgz`, then `alembic upgrade head`.
