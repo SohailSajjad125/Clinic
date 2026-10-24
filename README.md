@@ -58,5 +58,3 @@ See `docs/SECURITY_AUDIT.md`: an 18-item checklist (keys, env, admin routes, aut
 - A real Chromium browser run covered: website → sign up → onboarding, add patient, book, queue, call next, consultation with prescription, PDF, invoice and payment, dashboard and analytics, delete → history → restore → permanent delete, Ctrl+K palette, assistant panel, settings, logout/login, mobile layout (15 checks) plus a second browser suite for the new features (19 checks: admin, notifications, red dots and chimes, patient sign-up and requests, doctors, Back button, date/time pickers).
 - Backup and restore scripts were run against PostgreSQL.
 
-## Not verified / not built
-See `docs/FEATURE_STATUS.md`. In short: no payment gateway, insurance/lab/device integrations, native apps or 2FA; SMS/WhatsApp (Twilio) and the live Groq API were never called for real; privacy policy and terms are drafts; no accessibility audit; single-server real-time.
